@@ -1,0 +1,96 @@
+# Copyright 2019 EPFL, Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+INPUT:
+  BROWN_DATASET:  'dl/brown-patches/'
+  COLMAP_IMAGES:  'dl/colmap'
+
+  SOURCE:  'dl/patchesScale16_network_1.5px/PTN/train/'
+  VAL_SPLIT:   'dl/patchesScale16_network_1.5px/PTN/val/'
+
+LOGGING:
+
+  ENABLE_LOGGING: True
+  LOG_DIR: 'data/logs/'
+  MODEL_DIR: 'data/models/'
+  IMGS_DIR: 'data/images/'
+
+  LOG_INTERVAL: 10
+
+TRAINING:
+
+  LABEL: '_x64'
+  EXPERIMENT_NAME: 'STN_train-corrected-augm25.0_scale12_orientCorrection_10epochs_1.5px'
+  TRANSFORMER: 'STN'
+  SCALE: 12
+  COORDS: 'log'
+  PAD_TO: 1500
+
+  TRAINING_SET: 'colmap'
+  IMAGE_SIZE: 32
+  IS_DESC_256: False
+  SOFT_AUG: True
+  ORIENT_CORRECTION: True
+
+  NUM_WORKERS: 8
+  PIN_MEMORY: True
+
+  RESUME: ''
+  START_EPOCH: 0
+  EPOCHS: 10
+
+  BATCH_SIZE: 1000
+  TEST_BATCH_SIZE: 200
+
+  N_TRIPLETS: 5000000
+  MIN_KEYPOINTS_PER_IMAGE: 250
+  MIN_KEYPOINTS_PER_IMAGE_PAIR: 100
+  MIN_THRESHOLD_DISTANCE: 7.0
+  MAX_RATIO: 2
+
+  ENABLE_SCALE_FILTERING: False
+  ENABLE_ORIENTATION_FILTERING: True
+  ORIENTATION_FILTER_VALUE: 25
+
+  LOSS: 'triplet_margin'
+  BATCH_REDUCE: 'min'
+  MARGIN: 1.0
+  ANCHOR_SWAP: True
+
+  LR: 10
+  LR_DECAY: 1e-6
+  W_DECAY: 1e-4
+  OPTIMIZER: 'sgd'
+
+  FLIPROT: False
+  AUG: False
+
+  NO_CUDA: False
+  GPU_ID: 3
+
+  SEED: 42
+
+TEST:
+  TEST_BATCH_SIZE: 400
+  EVAL_INTERVAL: 500
+  ENABLE_ORIENTATION_FILTERING: False
+
+  SCALE: 16
+  MODEL_WEIGHTS: 'weights/cartesian.pth'
+  TRANSFORMER: 'STN'
+  COORDS: 'log'
+  IMAGE_SIZE: 32
+  IS_DESC_256: False
+  ORIENT_CORRECTION: False
+  PAD_TO: 1500
