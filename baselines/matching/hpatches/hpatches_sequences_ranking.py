@@ -258,7 +258,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--hpatches_keypoints",
         default=
-        "/cvlabdata2/cvlab/datasets_patrick/data/hpatches/hpatches-SIFT-keypoints/",
+        "/dl/HPatches/hpatches-SIFT-keypoints/",
         help="path to config file",
         type=str)
 

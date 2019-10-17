@@ -79,31 +79,6 @@ brown_test_sequences = ['notredame']
 # defines list of transformations applied to input patches
 
 
-def get_transforms():
-
-    train_transform = transforms.Compose([
-        transforms.Lambda(cv2_scale),
-        transforms.Lambda(np_reshape),
-        transforms.ToTensor()
-    ])
-
-    test_transform = transforms.Compose([
-        transforms.Lambda(cv2_scale),
-        transforms.Lambda(np_reshape),
-        transforms.ToPILImage(),
-        transforms.ToTensor()
-    ])
-
-    test_brown_transform = transforms.Compose([
-        transforms.Lambda(np_reshape64),
-        transforms.ToPILImage(),
-        transforms.Resize(32),
-        transforms.ToTensor()
-    ])
-
-    return train_transform, test_transform, test_brown_transform
-
-
 def create_train_loader(cfg, sequences):
 
     kwargs = {
@@ -127,9 +102,6 @@ def create_test_loaders(padTo):
         'num_workers': cfg.TRAINING.NUM_WORKERS,
         'pin_memory': cfg.TRAINING.PIN_MEMORY
     } if not cfg.TRAINING.NO_CUDA else {}
-
-    # get lists of transform operations
-    # _, _, test_brown_transform = get_transforms()
 
     transformer_dataset = transformerValTestData(cfg,
                                                  is_test=False,

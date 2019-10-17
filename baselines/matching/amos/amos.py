@@ -46,6 +46,8 @@ class AMOSDataset():
         self.test_LAFs = torch.load(os.path.join(self.root_dir,
                                                  'train_patches.pt'),
                                     map_location=torch.device('cpu'))
+        self.images_in_views = np.load(
+            os.path.join(self.root_dir, 'images_in_views.npy')).item()
         # name of views - sorted - corresponding to the data [3] in the .pt file
         print(len(self.test_LAFs[1]))
 
@@ -66,6 +68,7 @@ class AMOSDataset():
         anchors, positives = [], []
         all_images = {}
 
+        views_images = {}
         for idx in tqdm(range(len(self.test_LAFs[1])),
                         total=len(self.test_LAFs[1])):
 
@@ -75,8 +78,9 @@ class AMOSDataset():
 
             if view in self.skip_views: continue
 
-            images_in_view = os.listdir(os.path.join(self.test_path, view))
-
+            #images_in_view = (os.listdir(os.path.join(self.test_path, view)))
+            images_in_view = self.images_in_views[view]
+            #views_images[view] = images_in_view
             images, keypoints, orientations = np.random.choice(images_in_view, 2, replace=False),\
                                               LAFs[:,2].cpu().data.numpy(), \
                                               np.zeros(2)
@@ -103,6 +107,7 @@ class AMOSDataset():
                 else:
                     all_images[img] = [[keypoints, orientations[idx], scale]]
 
+    #  np.save('images_in_views_old.npy', np.array(views_images))
         return list(all_images.items()), anchors, positives
 
     def __getitem__(self, idx):
@@ -121,7 +126,7 @@ class AMOSDataset():
             print(image_path)
             raise RuntimeError(
                 "Image {} exceeds acceptable size, can't apply padding beyond image size."
-                .format(image_anchor_path))
+                .format(image_path))
 
         fillHeight = self.padTo - image_anchor.shape[1]
         fillWidth = self.padTo - image_anchor.shape[2]
@@ -237,7 +242,7 @@ if __name__ == '__main__':
                         type=str)
 
     parser.add_argument("--amos_dataset",
-                        default="dl/AMOS/AMOS_views_v3/",
+                        default="dl/AMOS/Handpicked_v3_png/",
                         help="path to config file",
                         type=str)
 

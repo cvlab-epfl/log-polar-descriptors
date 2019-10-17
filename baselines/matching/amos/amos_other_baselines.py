@@ -46,6 +46,9 @@ class AMOSDataset():
         self.test_LAFs = torch.load(os.path.join(self.root_dir,
                                                  'train_patches.pt'),
                                     map_location=torch.device('cpu'))
+        self.images_in_views = np.load(
+            os.path.join(self.root_dir, 'images_in_views.npy')).item()
+
         # name of views - sorted - corresponding to the data [3] in the .pt file
         print(len(self.test_LAFs[1]))
 
@@ -75,8 +78,8 @@ class AMOSDataset():
 
             if view in self.skip_views: continue
 
-            images_in_view = os.listdir(os.path.join(self.test_path, view))
-
+            #images_in_view = os.listdir(os.path.join(self.test_path, view))
+            images_in_view = self.images_in_views[view]
             images, keypoints, orientations = np.random.choice(images_in_view, 2, replace=False),\
                                               LAFs[:,2].cpu().data.numpy(), \
                                               np.zeros(2)

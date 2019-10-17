@@ -27,7 +27,7 @@ from modules.hardnet.models import HardNet
 
 
 # Configuration
-# Set to False to load the "Cartesian" models used in the paper
+# Set use_log_polar=False to load the "Cartesian" models used in the paper
 def extract_descriptors(input_filename, output_filename, use_log_polar,
                         num_keypoints, verbose):
     # Setup
@@ -179,7 +179,7 @@ if __name__ == '__main__':
 
     config, unparsed = parser.parse_known_args()
     if len(unparsed) > 0:
-        print_usage()
+        parser.print_usage()
     else:
         extract_descriptors(config.input, config.output, config.use_log_polar,
                             config.num_keypoints, config.verbose)

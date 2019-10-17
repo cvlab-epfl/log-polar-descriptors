@@ -58,7 +58,7 @@ Please refer to the code for the different parameters.
 
 ### AMOS patches dataset. HPatches dataset.
 
-You can evaluate performance on the [AMOS](https://github.com/pultarmi/AMOS_patches/) and [HPatches](https://github.com/hpatches/hpatches-dataset) datasets. First, clone the dependencies with `git submodule udpate --init`, and download the weights for GeoDesc, following their instructions.
+You can evaluate performance on the [AMOS](https://github.com/pultarmi/AMOS_patches/) and [HPatches](https://github.com/hpatches/hpatches-dataset) datasets. First, clone the dependencies with `git submodule update --init`, and download the weights for GeoDesc, following their instructions.
 You can then run the following script, that downloads and extracts data in the appropriate format:
 
 ```

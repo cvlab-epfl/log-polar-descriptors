@@ -21,7 +21,7 @@ def rotationMatrixToEulerAngles(R):
     # Check if this is a rotation matrix
     eps = 1e-6
     RtR = np.dot(np.transpose(R), R)
-    norm = np.linalg.norm(np.identity(3, dtype=R.dtype) - shouldBeIdentity)
+    norm = np.linalg.norm(np.identity(3, dtype=R.dtype) - RtR)
     assert (norm < eps)
 
     sy = np.sqrt(R[0, 0]**2 + R[1, 0]**2)
