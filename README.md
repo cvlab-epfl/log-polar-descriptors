@@ -22,6 +22,8 @@ Please consider also citing the paper upon which the network architecture is bas
 }
 ```
 
+Poster [link](https://github.com/cvlab-epfl/log-polar-descriptors/blob/master/poster/ICCV2019Poster.pdf)
+
 ## Setting up your environment
 
 Our code relies on pytorch. Please see `system/log-polar.yml` for a list of dependencies. You can create an environment with [miniconda](https://docs.conda.io/en/latest/miniconda.html) including all the dependencies with `conda env create -f system/log-polar.yml`.
