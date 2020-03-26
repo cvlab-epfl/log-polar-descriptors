@@ -36,9 +36,9 @@ We provide two scripts to extract descriptors given an image. Please check the n
 
 ### Download the data
 
-We rely on the data provided by the [2019 Image Matching Workshop challenge](https://image-matching-workshop.github.io/challenge/). You will need to download the following:
+We rely on the data provided by the [2019 Image Matching Workshop challenge](https://image-matching-workshop.github.io/challenge/) (2020 edition [here](https://vision.uvic.ca/image-matching-challenge/)). You will need to download the following:
 
-* Images (a): available [here](https://gfx.uvic.ca/nextcloud/index.php/s/75JNSoggacQhOkQ). We use the following sequences for training: `brandenburg_gate`, `grand_place_brussels`, `pantheon_exterior`, `taj_mahal`, `buckingham`, `notre_dame_front_facade`, `sacre_coeur`, `temple_nara_japan`, `colosseum_exterior`, `palace_of_westminster`, `st_peters_square`.
+* Images (a): available [here](https://vision.uvic.ca/imw-challenge/index.md). We use the following sequences for training: `brandenburg_gate`, `grand_place_brussels`, `pantheon_exterior`, `taj_mahal`, `buckingham`, `notre_dame_front_facade`, `sacre_coeur`, `temple_nara_japan`, `colosseum_exterior`, `palace_of_westminster`, `st_peters_square`.
 (you only need the images, feel free to delete other files).
 * Ground truth match data for training (b): available [here](https://drive.switch.ch/index.php/s/UtBIgsvh05KJnch).
 
